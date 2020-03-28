@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">My Application</string>
-    <string name="string1">Első szám</string>
-    <string name="string2">Második szám</string>
-    <string name="string3">Írj be egy számot</string>
-    <string name="button1">Összeadás</string>
-    <string name="string4">Az összeadás eredménye</string>
-    <string name="new_activity">Új activity megnyitása</string>
-</resources>
