@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".List2">
+    tools:context=".lists.List2">
 
     <TextView
         android:id="@+id/textView7"
@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.851" />
 
     <Button
-        android:id="@+id/itemMod"
+        android:id="@+id/modButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClick"
@@ -46,14 +46,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.976" />
 
-    <ListView
-        android:id="@+id/food_list"
-        android:layout_width="343dp"
-        android:layout_height="344dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="152dp"
+        android:layout_marginEnd="31dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"></LinearLayout>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView2"

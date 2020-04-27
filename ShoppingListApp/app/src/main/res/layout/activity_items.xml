@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Items">
+    tools:context=".item.Items">
 
     <Button
-        android:id="@+id/itemMod"
+        android:id="@+id/modButton"
         android:layout_width="0dp"
         android:layout_height="109dp"
         android:layout_marginStart="80dp"
@@ -31,7 +31,7 @@
         android:layout_marginBottom="70dp"
         android:onClick="onClick"
         android:text="@string/newItem"
-        app:layout_constraintBottom_toTopOf="@+id/itemMod"
+        app:layout_constraintBottom_toTopOf="@+id/modButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,5 +51,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemMod" />
+        app:layout_constraintTop_toBottomOf="@+id/modButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

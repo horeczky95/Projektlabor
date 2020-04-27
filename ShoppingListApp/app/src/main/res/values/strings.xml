@@ -8,7 +8,11 @@
     <string name="list5">Bevásárló Lista 5</string>
     <string name="items">Termék kezelés</string>
     <string name="newItem">Új termék</string>
-    <string name="itemMod">Termék módosítása</string>
+    <string name="itemMod">Termék módosítás</string>
+    <string name="nameMod">Név módosítás</string>
+    <string name="priceMod">Ár módosítás</string>
+    <string name="pieceMod">Darab szám módosítás</string>
+    <string name="listView">Lista megjelenítés</string>
     <string name="deleteItem">Termék törlése</string>
     <string name="delete">Termék törlés</string>
     <string name="listMod">Lista módosítása</string>

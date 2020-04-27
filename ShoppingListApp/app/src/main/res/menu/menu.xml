@@ -33,7 +33,11 @@
                 />
             <item
                 android:id="@+id/listItemMod"
-                android:title="Lista módosítása"
+                android:title="Listában módosítás"
+                />
+            <item
+                android:id="@+id/listItemDelete"
+                android:title="Listából való törlés"
                 />
 
         </menu>
@@ -49,7 +53,7 @@
                 android:title="@string/newItem"
                 />
             <item
-                android:id="@+id/itemMod"
+                android:id="@+id/modButton"
                 android:title="@string/itemMod"
                 />
             <item
