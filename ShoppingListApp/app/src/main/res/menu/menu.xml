@@ -53,7 +53,7 @@
                 android:title="@string/newItem"
                 />
             <item
-                android:id="@+id/modButton"
+                android:id="@+id/itemMod"
                 android:title="@string/itemMod"
                 />
             <item

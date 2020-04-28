@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent newItem = new Intent(MainActivity.this, NewItem.class);
                 startActivity(newItem);
                 break;
-            case R.id.modButton:
+            case R.id.itemMod:
                 Intent itemMod = new Intent(MainActivity.this, ItemMod.class);
                 startActivity(itemMod);
                 break;

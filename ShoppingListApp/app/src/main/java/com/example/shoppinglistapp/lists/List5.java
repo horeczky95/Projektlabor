@@ -53,7 +53,7 @@ public class List5 extends AppCompatActivity {
                 Intent newItem = new Intent(List5.this, NewItem.class);
                 startActivity(newItem);
                 break;
-            case R.id.modButton:
+            case R.id.itemMod:
                 Intent itemMod = new Intent(List5.this, ItemMod.class);
                 startActivity(itemMod);
                 break;

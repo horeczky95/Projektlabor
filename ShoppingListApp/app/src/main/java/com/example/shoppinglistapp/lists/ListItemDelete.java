@@ -173,7 +173,7 @@ public class ListItemDelete extends AppCompatActivity {
                 Intent newItem = new Intent(ListItemDelete.this, NewItem.class);
                 startActivity(newItem);
                 break;
-            case R.id.modButton:
+            case R.id.itemMod:
                 Intent itemMod = new Intent(ListItemDelete.this, ItemMod.class);
                 startActivity(itemMod);
                 break;

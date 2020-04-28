@@ -194,7 +194,7 @@ public class ListItemMod extends AppCompatActivity {
                 Intent newItem = new Intent(ListItemMod.this, NewItem.class);
                 startActivity(newItem);
                 break;
-            case R.id.modButton:
+            case R.id.itemMod:
                 Intent itemMod = new Intent(ListItemMod.this, ItemMod.class);
                 startActivity(itemMod);
                 break;

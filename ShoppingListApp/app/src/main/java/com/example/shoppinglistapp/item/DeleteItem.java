@@ -142,7 +142,7 @@ public class DeleteItem extends AppCompatActivity {
                 Intent newItem = new Intent(DeleteItem.this, NewItem.class);
                 startActivity(newItem);
                 break;
-            case R.id.modButton:
+            case R.id.itemMod:
                 Intent itemMod = new Intent(DeleteItem.this, ItemMod.class);
                 startActivity(itemMod);
                 break;

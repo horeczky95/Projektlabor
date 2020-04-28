@@ -33,14 +33,19 @@ public class NewListItem extends AppCompatActivity {
     MainDBHelper mainDBHelper;
     List1DBHelper list1DBHelper;
 
+    private ListView barCodeList;
+    private ListView nameList;
+    private ListView priceList;
+    private ListView pieceList;
+
     private EditText barCode;
     private EditText name;
     private EditText price;
     private EditText piece;
     private EditText listNumber;
+
     private Button addList;
     private Button addDB;
-    private ListView nameList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +61,10 @@ public class NewListItem extends AppCompatActivity {
         addList = (Button) findViewById(R.id.addList);
         addDB = (Button) findViewById(R.id.addDB);
 
+        barCodeList = (ListView) findViewById(R.id.barCodeList);
         nameList = (ListView) findViewById(R.id.nameList);
+        priceList = (ListView) findViewById(R.id.priceList);
+        pieceList = (ListView) findViewById(R.id.pieceList);
 
         mainDBHelper = new MainDBHelper(this);
         list1DBHelper = new List1DBHelper(this);
@@ -102,23 +110,18 @@ public class NewListItem extends AppCompatActivity {
                 } else {
                     toastMessage("Kihagytál egy adatot!");
                 }
-                listView();
+                barCodeView();
+                nameView();
+                priceView();
+                pieceView();
             }
         });
 
-        listView();
+        barCodeView();
+        nameView();
+        priceView();
+        pieceView();
     }
-
-    private void listView() {
-        Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(1));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        nameList.setAdapter(adapter);
-    }
-
 
     public void addDatatoList1(String barcode, String name, String price, String piece) {
         boolean insertData = list1DBHelper.addData(barcode, name, price, piece);
@@ -138,6 +141,46 @@ public class NewListItem extends AppCompatActivity {
         } else {
             toastMessage("Valamit elrontottál!");
         }
+    }
+
+    private void barCodeView() {
+        Cursor data = mainDBHelper.viewData();
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()) {
+            listData.add(data.getString(1));
+        }
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        barCodeList.setAdapter(adapter);
+    }
+
+    private void nameView() {
+        Cursor data = mainDBHelper.viewData();
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()) {
+            listData.add(data.getString(2));
+        }
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        nameList.setAdapter(adapter);
+    }
+
+    private void priceView() {
+        Cursor data = mainDBHelper.viewData();
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()) {
+            listData.add(data.getString(3));
+        }
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        priceList.setAdapter(adapter);
+    }
+
+    private void pieceView() {
+        Cursor data = mainDBHelper.viewData();
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()) {
+            listData.add(data.getString(4));
+        }
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        pieceList.setAdapter(adapter);
     }
 
     private void toastMessage(String message) {
@@ -178,7 +221,7 @@ public class NewListItem extends AppCompatActivity {
                 Intent newItem = new Intent(NewListItem.this, NewItem.class);
                 startActivity(newItem);
                 break;
-            case R.id.modButton:
+            case R.id.itemMod:
                 Intent itemMod = new Intent(NewListItem.this, ItemMod.class);
                 startActivity(itemMod);
                 break;
