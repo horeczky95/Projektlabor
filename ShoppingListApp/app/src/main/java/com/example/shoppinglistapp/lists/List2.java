@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 
@@ -33,6 +34,10 @@ public class List2 extends AppCompatActivity {
                 Intent items = new Intent(List2.this, ListItemMod.class);
                 startActivity(items);
                 break;
+            case R.id.delButton:
+                Intent itemdel = new Intent(List2.this, ListItemDelete.class);
+                startActivity(itemdel);
+                break;
         }
     }
 
@@ -47,6 +52,10 @@ public class List2 extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.main:
+                Intent main = new Intent(List2.this, MainActivity.class);
+                startActivity(main);
+                break;
             case R.id.list1:
                 Intent list1 = new Intent(List2.this, List1.class);
                 startActivity(list1);

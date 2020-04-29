@@ -7,10 +7,11 @@
     tools:context=".lists.ListItemDelete">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="408dp"
-        android:layout_height="450dp"
+        android:layout_height="460dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="210dp"
         android:layout_marginEnd="1dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +22,7 @@
         <ListView
             android:id="@+id/pieceList"
             android:layout_width="98dp"
-            android:layout_height="465dp"
+            android:layout_height="460dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,22 +33,9 @@
             app:layout_constraintVertical_bias="0.898" />
 
         <ListView
-            android:id="@+id/barCodeList"
-            android:layout_width="98dp"
-            android:layout_height="450dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.128"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.897" />
-
-        <ListView
             android:id="@+id/nameList"
-            android:layout_width="98dp"
-            android:layout_height="450dp"
+            android:layout_width="146dp"
+            android:layout_height="460dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="204dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +48,7 @@
         <ListView
             android:id="@+id/priceList"
             android:layout_width="98dp"
-            android:layout_height="450dp"
+            android:layout_height="460dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="105dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -69,23 +57,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.898" />
+
+        <ListView
+            android:id="@+id/idList"
+            android:layout_width="50dp"
+            android:layout_height="460dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="7dp" />
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/barCode"
+        android:id="@+id/id"
         android:layout_width="180dp"
         android:layout_height="41dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="148dp"
         android:ems="10"
-        android:hint="@string/barcode"
+        android:hint="@string/ID"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintEnd_toEndOf="@+id/delItemButton"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:onClick="onClick"
+        android:text="@string/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView14"
         android:layout_width="156dp"
         android:layout_height="42dp"
         android:layout_marginTop="20dp"

@@ -20,12 +20,10 @@
 
         <ListView
             android:id="@+id/priceList"
-            android:layout_width="130dp"
+            android:layout_width="135dp"
             android:layout_height="465dp"
-            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="141dp"
-            android:layout_marginEnd="137dp"
+            android:layout_marginEnd="140dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.945"
@@ -40,9 +38,7 @@
             android:layout_width="130dp"
             android:layout_height="465dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="273dp"
+            android:layout_marginStart="9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.539"
@@ -54,18 +50,27 @@
             android:id="@+id/pieceList"
             android:layout_width="130dp"
             android:layout_height="465dp"
-            android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="276dp"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.539"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898"/>
+            app:layout_constraintVertical_bias="0.898" />
 
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/allPriceList"
+        android:layout_width="143dp"
+        android:layout_height="45dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.848" />
 
     <TextView
         android:id="@+id/textView"

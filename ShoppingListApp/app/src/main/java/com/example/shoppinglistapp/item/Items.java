@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.lists.ListItemDelete;
 import com.example.shoppinglistapp.lists.NewListItem;
@@ -55,6 +56,10 @@ public class Items extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.main:
+                Intent main = new Intent(Items.this, MainActivity.class);
+                startActivity(main);
+                break;
             case R.id.list1:
                 Intent list1 = new Intent(Items.this, List1.class);
                 startActivity(list1);

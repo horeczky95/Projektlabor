@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.example.shoppinglistapp.MainActivity;
+import com.example.shoppinglistapp.database.List1DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 
@@ -26,10 +28,11 @@ public class List1 extends AppCompatActivity {
 
     private static final String TAG = "List1";
 
-    List1DBHelper list1DBHelper;
+    List1DatabaseHelper list1DBHelper;
     private ListView nameList;
     private ListView pieceList;
     private ListView priceList;
+    private ListView allPriceList;
 
 
     @Override
@@ -37,14 +40,16 @@ public class List1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list1);
 
-        list1DBHelper = new List1DBHelper(this);
+        list1DBHelper = new List1DatabaseHelper(this);
 
         nameList = (ListView) findViewById(R.id.nameList);
         pieceList = (ListView) findViewById(R.id.pieceList);
         priceList = (ListView) findViewById(R.id.priceList);
+        allPriceList = (ListView) findViewById(R.id.allPriceList);
         nameView();
         pieceView();
         priceView();
+        allPriceView();
 
     }
 
@@ -52,31 +57,39 @@ public class List1 extends AppCompatActivity {
         Cursor data = list1DBHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
-            listData.add(data.getString(2));
+            listData.add(data.getString(1));
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         nameList.setAdapter(adapter);
     }
-    private void pieceView() {
+    private void priceView() {
         Cursor data = list1DBHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
-            listData.add(data.getString(4));
+            listData.add(data.getString(2));
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        pieceList.setAdapter(adapter);
+        priceList.setAdapter(adapter);
     }
-    private void priceView() {
+    private void pieceView() {
         Cursor data = list1DBHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
             listData.add(data.getString(3));
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        priceList.setAdapter(adapter);
+        pieceList.setAdapter(adapter);
     }
 
-
+    private void allPriceView() {
+        Cursor data = list1DBHelper.getAllPrice();
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()) {
+            listData.add(data.getString(0));
+        }
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        allPriceList.setAdapter(adapter);
+    }
 
     public void onClick(final android.view.View v) {
         switch (v.getId()) {
@@ -105,6 +118,10 @@ public class List1 extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.main:
+                Intent main = new Intent(List1.this, MainActivity.class);
+                startActivity(main);
+                break;
             case R.id.list2:
                 Intent list2 = new Intent(List1.this, List2.class);
                 startActivity(list2);

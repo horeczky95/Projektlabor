@@ -64,6 +64,12 @@ public class List1DBHelper extends SQLiteOpenHelper {
         return data;
     }
 
+    public Cursor getAllPrice() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT SUM(" + COL4 + " * " + COL5 + ") FROM " + TABLE_NAME, null);
+        return data;
+    }
+
     public boolean updateItem(String barCode, String newName, String newPrice, String newPiece) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

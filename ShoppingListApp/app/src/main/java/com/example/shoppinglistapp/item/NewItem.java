@@ -17,6 +17,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.lists.ListItemDelete;
 import com.example.shoppinglistapp.lists.ListItemMod;
 import com.example.shoppinglistapp.R;
@@ -131,6 +132,15 @@ public class NewItem extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+    public void onClick(final android.view.View v) {
+        switch (v.getId()) {
+            case R.id.backButton:
+                Intent list1 = new Intent(NewItem.this, Items.class);
+                startActivity(list1);
+                break;
+        }
+    }
+
     //Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,6 +152,10 @@ public class NewItem extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.main:
+                Intent main = new Intent(NewItem.this, MainActivity.class);
+                startActivity(main);
+                break;
             case R.id.list1:
                 Intent list1 = new Intent(NewItem.this, List1.class);
                 startActivity(list1);

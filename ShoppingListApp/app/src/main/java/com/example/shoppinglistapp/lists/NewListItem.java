@@ -17,6 +17,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.shoppinglistapp.MainActivity;
+import com.example.shoppinglistapp.database.List1DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.item.NewItem;
@@ -31,63 +33,55 @@ public class NewListItem extends AppCompatActivity {
     private static final String TAG = "NewListItem";
 
     MainDBHelper mainDBHelper;
-    List1DBHelper list1DBHelper;
+    List1DatabaseHelper list1DBHelper;
 
     private ListView barCodeList;
     private ListView nameList;
     private ListView priceList;
-    private ListView pieceList;
 
-    private EditText barCode;
     private EditText name;
     private EditText price;
     private EditText piece;
     private EditText listNumber;
 
     private Button addList;
-    private Button addDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_itemto_list);
 
-        barCode = (EditText) findViewById(R.id.barCode);
         name = (EditText) findViewById(R.id.name);
         price = (EditText) findViewById(R.id.price);
         piece = (EditText) findViewById(R.id.piece);
         listNumber = (EditText) findViewById(R.id.listNum);
 
         addList = (Button) findViewById(R.id.addList);
-        addDB = (Button) findViewById(R.id.addDB);
 
         barCodeList = (ListView) findViewById(R.id.barCodeList);
         nameList = (ListView) findViewById(R.id.nameList);
         priceList = (ListView) findViewById(R.id.priceList);
-        pieceList = (ListView) findViewById(R.id.pieceList);
 
         mainDBHelper = new MainDBHelper(this);
-        list1DBHelper = new List1DBHelper(this);
+        list1DBHelper = new List1DatabaseHelper(this);
 
         addList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newBarcode = barCode.getText().toString();
                 String newName = name.getText().toString();
                 String newPrice = price.getText().toString();
                 String newPiece = piece.getText().toString();
                 String num = listNumber.getText().toString();
                 if(num.equals("1")) {
-                    if (barCode.length() != 0 && name.length() != 0 &&
+                    if (name.length() != 0 &&
                             price.length() != 0 && piece.length() != 0) {
-                        addDatatoList1(newBarcode, newName, newPrice, newPiece);
-                        barCode.setText("");
+                        addDatatoList1(newName, newPrice, newPiece);
                         name.setText("");
                         price.setText("");
                         piece.setText("");
                         toastMessage("A termék be került a listába.");
                     } else {
-                        toastMessage("Kihagytál egy adatot!");
+                        toastMessage("Hiányzik egy adat!");
                     }
                 } else {
                     toastMessage("Hiba");
@@ -95,47 +89,13 @@ public class NewListItem extends AppCompatActivity {
             }
         });
 
-        addDB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newBarcode = barCode.getText().toString();
-                String newName = name.getText().toString();
-                String newPrice = price.getText().toString();
-                if(barCode.length() != 0 && name.length() != 0 && price.length() != 0) {
-                    addData(newBarcode, newName, newPrice);
-                    barCode.setText("");
-                    name.setText("");
-                    price.setText("");
-                    toastMessage("A termék be került az adatbázisba.");
-                } else {
-                    toastMessage("Kihagytál egy adatot!");
-                }
-                barCodeView();
-                nameView();
-                priceView();
-                pieceView();
-            }
-        });
-
         barCodeView();
         nameView();
         priceView();
-        pieceView();
     }
 
-    public void addDatatoList1(String barcode, String name, String price, String piece) {
-        boolean insertData = list1DBHelper.addData(barcode, name, price, piece);
-
-        if(insertData) {
-            toastMessage("Hozzáadás megtörtént!");
-        } else {
-            toastMessage("Valamit elrontottál!");
-        }
-    }
-
-    public void addData(String barcode, String name, String price) {
-        boolean insertData = mainDBHelper.addData(barcode, name, price);
-
+    public void addDatatoList1(String name, String price, String piece) {
+        boolean insertData = list1DBHelper.addData(name, price, piece);
         if(insertData) {
             toastMessage("Hozzáadás megtörtént!");
         } else {
@@ -152,7 +112,6 @@ public class NewListItem extends AppCompatActivity {
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         barCodeList.setAdapter(adapter);
     }
-
     private void nameView() {
         Cursor data = mainDBHelper.viewData();
         ArrayList<String> listData = new ArrayList<>();
@@ -162,7 +121,6 @@ public class NewListItem extends AppCompatActivity {
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         nameList.setAdapter(adapter);
     }
-
     private void priceView() {
         Cursor data = mainDBHelper.viewData();
         ArrayList<String> listData = new ArrayList<>();
@@ -173,18 +131,18 @@ public class NewListItem extends AppCompatActivity {
         priceList.setAdapter(adapter);
     }
 
-    private void pieceView() {
-        Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(4));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        pieceList.setAdapter(adapter);
-    }
-
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void onClick(final android.view.View v) {
+        String num = listNumber.getText().toString();
+        switch (v.getId()) {
+            case R.id.backButton:
+                Intent list1 = new Intent(NewListItem.this, Lists.class);
+                startActivity(list1);
+                break;
+        }
     }
     //Menu
     @Override
@@ -197,6 +155,10 @@ public class NewListItem extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.main:
+                Intent main = new Intent(NewListItem.this, MainActivity.class);
+                startActivity(main);
+                break;
             case R.id.list1:
                 Intent list1 = new Intent(NewListItem.this, List1.class);
                 startActivity(list1);

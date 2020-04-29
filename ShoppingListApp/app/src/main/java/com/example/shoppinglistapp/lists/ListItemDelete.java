@@ -17,8 +17,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.database.List1DBHelper;
+import com.example.shoppinglistapp.database.List1DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.item.NewItem;
@@ -29,15 +31,15 @@ public class ListItemDelete extends AppCompatActivity {
 
     private static final String TAG = "ListItemDelete";
 
-    List1DBHelper list1DBHelper;
+    List1DatabaseHelper list1DBHelper;
 
-    private ListView barCodeList;
+    private ListView idList;
     private ListView nameList;
     private ListView priceList;
     private ListView pieceList;
 
     private EditText listNumber;
-    private EditText barCode;
+    private EditText id;
 
     private Button delItemButton;
     private Button listViewer;
@@ -47,23 +49,23 @@ public class ListItemDelete extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_item_delete);
 
-        barCodeList = (ListView) findViewById(R.id.barCodeList);
+        idList = (ListView) findViewById(R.id.idList);
         nameList = (ListView) findViewById(R.id.nameList);
         priceList = (ListView) findViewById(R.id.priceList);
         pieceList = (ListView) findViewById(R.id.pieceList);
 
         listNumber = (EditText) findViewById(R.id.listNum);
-        barCode = (EditText) findViewById(R.id.barCode);
+        id = (EditText) findViewById(R.id.id);
 
         listViewer = (Button) findViewById(R.id.listViewer);
         delItemButton = (Button) findViewById(R.id.delItemButton);
 
-        list1DBHelper = new List1DBHelper(this);
+        list1DBHelper = new List1DatabaseHelper(this);
 
         listViewer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                barCodeView();
+                idView();
                 nameView();
                 priceView();
                 pieceView();
@@ -73,63 +75,59 @@ public class ListItemDelete extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String num = listNumber.getText().toString();
-                String barcode = barCode.getText().toString();
+                String barcode = id.getText().toString();
                 if(num.equals("1")){
-                    if(barCode.length() != 0) {
+                    if(id.length() != 0) {
                         list1DBHelper.deleteItem(barcode);
-                        barCode.setText("");
+                        id.setText("");
                         toastMessage("Termék törölve a táblából!");
                     } else {
                         toastMessage("Nincs megadva vonalkód!");
                     }
-
+                    idView();
+                    nameView();
+                    priceView();
+                    pieceView();
                 } else {
                     toastMessage("Hiba!");
                 }
-                barCodeView();
-                nameView();
-                priceView();
-                pieceView();
+
             }
         });
     }
 
-
-    private void barCodeView() {
+    private void idView() {
+        Cursor data = list1DBHelper.getAllData();
+        ArrayList<String> listData = new ArrayList<>();
+        while(data.moveToNext()) {
+            listData.add(data.getString(0));
+        }
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        idList.setAdapter(adapter);
+    }
+    private void nameView() {
         Cursor data = list1DBHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
             listData.add(data.getString(1));
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        barCodeList.setAdapter(adapter);
+        nameList.setAdapter(adapter);
     }
-
-    private void nameView() {
+    private void priceView() {
         Cursor data = list1DBHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
             listData.add(data.getString(2));
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        nameList.setAdapter(adapter);
-    }
-
-    private void priceView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(3));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         priceList.setAdapter(adapter);
     }
-
     private void pieceView() {
         Cursor data = list1DBHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
-            listData.add(data.getString(4));
+            listData.add(data.getString(3));
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         pieceList.setAdapter(adapter);
@@ -137,6 +135,16 @@ public class ListItemDelete extends AppCompatActivity {
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void onClick(final android.view.View v) {
+        String num = listNumber.getText().toString();
+        switch (v.getId()) {
+            case R.id.backButton:
+                Intent list1 = new Intent(ListItemDelete.this, Lists.class);
+                startActivity(list1);
+                break;
+        }
     }
     //Menu
     @Override
@@ -149,6 +157,10 @@ public class ListItemDelete extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.main:
+                Intent main = new Intent(ListItemDelete.this, MainActivity.class);
+                startActivity(main);
+                break;
             case R.id.list1:
                 Intent list1 = new Intent(ListItemDelete.this, List1.class);
                 startActivity(list1);
