@@ -28,7 +28,7 @@ public class List1 extends AppCompatActivity {
 
     private static final String TAG = "List1";
 
-    List1DatabaseHelper list1DBHelper;
+    List1DatabaseHelper list1DatabaseHelper;
     private ListView nameList;
     private ListView pieceList;
     private ListView priceList;
@@ -40,7 +40,7 @@ public class List1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list1);
 
-        list1DBHelper = new List1DatabaseHelper(this);
+        list1DatabaseHelper = new List1DatabaseHelper(this);
 
         nameList = (ListView) findViewById(R.id.nameList);
         pieceList = (ListView) findViewById(R.id.pieceList);
@@ -54,7 +54,7 @@ public class List1 extends AppCompatActivity {
     }
 
     private void nameView() {
-        Cursor data = list1DBHelper.getAllData();
+        Cursor data = list1DatabaseHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
             listData.add(data.getString(1));
@@ -63,7 +63,7 @@ public class List1 extends AppCompatActivity {
         nameList.setAdapter(adapter);
     }
     private void priceView() {
-        Cursor data = list1DBHelper.getAllData();
+        Cursor data = list1DatabaseHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
             listData.add(data.getString(2));
@@ -72,7 +72,7 @@ public class List1 extends AppCompatActivity {
         priceList.setAdapter(adapter);
     }
     private void pieceView() {
-        Cursor data = list1DBHelper.getAllData();
+        Cursor data = list1DatabaseHelper.getAllData();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
             listData.add(data.getString(3));
@@ -82,7 +82,7 @@ public class List1 extends AppCompatActivity {
     }
 
     private void allPriceView() {
-        Cursor data = list1DBHelper.getAllPrice();
+        Cursor data = list1DatabaseHelper.getAllPrice();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
             listData.add(data.getString(0));

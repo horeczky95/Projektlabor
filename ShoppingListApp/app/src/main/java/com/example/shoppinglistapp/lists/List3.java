@@ -46,13 +46,13 @@ public class List3 extends AppCompatActivity {
                 Intent list2 = new Intent(List3.this, List2.class);
                 startActivity(list2);
                 break;
+            case R.id.list3:
+                Intent list3 = new Intent(List3.this, List3.class);
+                startActivity(list3);
+                break;
             case R.id.list4:
                 Intent list4 = new Intent(List3.this, List4.class);
                 startActivity(list4);
-                break;
-            case R.id.list5:
-                Intent list5 = new Intent(List3.this, List5.class);
-                startActivity(list5);
                 break;
             case R.id.newItem:
                 Intent newItem = new Intent(List3.this, NewItem.class);
@@ -69,6 +69,7 @@ public class List3 extends AppCompatActivity {
             case R.id.newListItem:
                 Intent newListItem = new Intent(List3.this, NewListItem.class);
                 startActivity(newListItem);
+                break;
             case R.id.listItemMod:
                 Intent listItemMod = new Intent(List3.this, ListItemMod.class);
                 startActivity(listItemMod);

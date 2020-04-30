@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
-
 import com.example.shoppinglistapp.item.NewItem;
 import com.example.shoppinglistapp.R;
 
@@ -22,23 +21,6 @@ public class List2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list2);
-    }
-
-    public void onClick(final android.view.View v) {
-        switch (v.getId()) {
-            case R.id.newItem:
-                Intent lists = new Intent(List2.this, NewListItem.class);
-                startActivity(lists);
-                break;
-            case R.id.modButton:
-                Intent items = new Intent(List2.this, ListItemMod.class);
-                startActivity(items);
-                break;
-            case R.id.delButton:
-                Intent itemdel = new Intent(List2.this, ListItemDelete.class);
-                startActivity(itemdel);
-                break;
-        }
     }
 
     //Menu
@@ -60,6 +42,10 @@ public class List2 extends AppCompatActivity {
                 Intent list1 = new Intent(List2.this, List1.class);
                 startActivity(list1);
                 break;
+            case R.id.list2:
+                Intent list2 = new Intent(List2.this, List2.class);
+                startActivity(list2);
+                break;
             case R.id.list3:
                 Intent list3 = new Intent(List2.this, List3.class);
                 startActivity(list3);
@@ -67,10 +53,6 @@ public class List2 extends AppCompatActivity {
             case R.id.list4:
                 Intent list4 = new Intent(List2.this, List4.class);
                 startActivity(list4);
-                break;
-            case R.id.list5:
-                Intent list5 = new Intent(List2.this, List5.class);
-                startActivity(list5);
                 break;
             case R.id.newItem:
                 Intent newItem = new Intent(List2.this, NewItem.class);

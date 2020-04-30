@@ -50,9 +50,9 @@ public class List4 extends AppCompatActivity {
                 Intent list3 = new Intent(List4.this, List3.class);
                 startActivity(list3);
                 break;
-            case R.id.list5:
-                Intent list5 = new Intent(List4.this, List5.class);
-                startActivity(list5);
+            case R.id.list4:
+                Intent list4 = new Intent(List4.this, List4.class);
+                startActivity(list4);
                 break;
             case R.id.newItem:
                 Intent newItem = new Intent(List4.this, NewItem.class);
