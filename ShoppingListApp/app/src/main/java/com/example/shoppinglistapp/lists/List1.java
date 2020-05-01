@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.example.shoppinglistapp.ListProduct;
+import com.example.shoppinglistapp.ListsAdapter;
 import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.database.List1DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
@@ -20,18 +22,20 @@ import com.example.shoppinglistapp.item.ItemMod;
 
 import com.example.shoppinglistapp.item.NewItem;
 import com.example.shoppinglistapp.R;;
-import com.example.shoppinglistapp.database.List1DBHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class List1 extends AppCompatActivity {
 
     private static final String TAG = "List1";
 
     List1DatabaseHelper list1DatabaseHelper;
-    private ListView nameList;
-    private ListView pieceList;
-    private ListView priceList;
+
+    private ListView listView;
+    private ListsAdapter adapter;
+    private List<ListProduct> mItemProductList;
+
     private ListView allPriceList;
 
 
@@ -41,44 +45,21 @@ public class List1 extends AppCompatActivity {
         setContentView(R.layout.activity_list1);
 
         list1DatabaseHelper = new List1DatabaseHelper(this);
-
-        nameList = (ListView) findViewById(R.id.nameList);
-        pieceList = (ListView) findViewById(R.id.pieceList);
-        priceList = (ListView) findViewById(R.id.priceList);
+        listView = (ListView) findViewById(R.id.listView);
         allPriceList = (ListView) findViewById(R.id.allPriceList);
-        nameView();
-        pieceView();
-        priceView();
+        dataView();
         allPriceView();
 
     }
 
-    private void nameView() {
+    public void dataView() {
         Cursor data = list1DatabaseHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
+        mItemProductList = new ArrayList<>();
         while(data.moveToNext()) {
-            listData.add(data.getString(1));
+            mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        nameList.setAdapter(adapter);
-    }
-    private void priceView() {
-        Cursor data = list1DatabaseHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(2));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        priceList.setAdapter(adapter);
-    }
-    private void pieceView() {
-        Cursor data = list1DatabaseHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(3));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        pieceList.setAdapter(adapter);
+        adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+        listView.setAdapter(adapter);
     }
 
     private void allPriceView() {

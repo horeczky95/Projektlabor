@@ -17,6 +17,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.shoppinglistapp.ListProduct;
+import com.example.shoppinglistapp.ListsAdapter;
 import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.database.List1DBHelper;
@@ -26,17 +28,17 @@ import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.item.NewItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListItemDelete extends AppCompatActivity {
 
     private static final String TAG = "ListItemDelete";
 
-    List1DatabaseHelper list1DBHelper;
+    List1DatabaseHelper list1DatabaseHelper;
 
-    private ListView idList;
-    private ListView nameList;
-    private ListView priceList;
-    private ListView pieceList;
+    private ListView listView;
+    private ListsAdapter adapter;
+    private List<ListProduct> mItemProductList;
 
     private EditText listNumber;
     private EditText id;
@@ -49,10 +51,7 @@ public class ListItemDelete extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_item_delete);
 
-        idList = (ListView) findViewById(R.id.idList);
-        nameList = (ListView) findViewById(R.id.nameList);
-        priceList = (ListView) findViewById(R.id.priceList);
-        pieceList = (ListView) findViewById(R.id.pieceList);
+        listView = (ListView) findViewById(R.id.listView);
 
         listNumber = (EditText) findViewById(R.id.listNum);
         id = (EditText) findViewById(R.id.id);
@@ -60,17 +59,15 @@ public class ListItemDelete extends AppCompatActivity {
         listViewer = (Button) findViewById(R.id.listViewer);
         delItemButton = (Button) findViewById(R.id.delItemButton);
 
-        list1DBHelper = new List1DatabaseHelper(this);
+        list1DatabaseHelper = new List1DatabaseHelper(this);
 
         listViewer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                idView();
-                nameView();
-                priceView();
-                pieceView();
+                dataView();
             }
         });
+
         delItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,59 +75,35 @@ public class ListItemDelete extends AppCompatActivity {
                 String barcode = id.getText().toString();
                 if(num.equals("1")){
                     if(id.length() != 0) {
-                        list1DBHelper.deleteItem(barcode);
+                        list1DatabaseHelper.deleteItem(barcode);
                         id.setText("");
                         toastMessage("Termék törölve a táblából!");
                     } else {
                         toastMessage("Nincs megadva vonalkód!");
                     }
-                    idView();
-                    nameView();
-                    priceView();
-                    pieceView();
+
                 } else {
                     toastMessage("Hiba!");
                 }
-
+                dataView();
             }
         });
     }
 
-    private void idView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(0));
+    public void dataView() {
+        String num = listNumber.getText().toString();
+        if(num.equals("1")){
+            Cursor data = list1DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else {
+            toastMessage("Hibás lista kód!");
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        idList.setAdapter(adapter);
-    }
-    private void nameView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(1));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        nameList.setAdapter(adapter);
-    }
-    private void priceView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(2));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        priceList.setAdapter(adapter);
-    }
-    private void pieceView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(3));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        pieceList.setAdapter(adapter);
+
     }
 
     private void toastMessage(String message) {

@@ -17,6 +17,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.shoppinglistapp.DataBaseListAdapter;
+import com.example.shoppinglistapp.DataBaseProduct;
 import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.database.List1DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
@@ -27,6 +29,7 @@ import com.example.shoppinglistapp.database.List1DBHelper;
 import com.example.shoppinglistapp.database.MainDBHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewListItem extends AppCompatActivity {
 
@@ -35,9 +38,9 @@ public class NewListItem extends AppCompatActivity {
     MainDBHelper mainDBHelper;
     List1DatabaseHelper list1DBHelper;
 
-    private ListView barCodeList;
-    private ListView nameList;
-    private ListView priceList;
+    private ListView listView;
+    private DataBaseListAdapter adapter;
+    private List<DataBaseProduct> mDataBaseProductList;
 
     private EditText name;
     private EditText price;
@@ -58,9 +61,7 @@ public class NewListItem extends AppCompatActivity {
 
         addList = (Button) findViewById(R.id.addList);
 
-        barCodeList = (ListView) findViewById(R.id.barCodeList);
-        nameList = (ListView) findViewById(R.id.nameList);
-        priceList = (ListView) findViewById(R.id.priceList);
+        listView = (ListView) findViewById(R.id.listView);
 
         mainDBHelper = new MainDBHelper(this);
         list1DBHelper = new List1DatabaseHelper(this);
@@ -75,7 +76,7 @@ public class NewListItem extends AppCompatActivity {
                 if(num.equals("1")) {
                     if (name.length() != 0 &&
                             price.length() != 0 && piece.length() != 0) {
-                        addDatatoList1(newName, newPrice, newPiece);
+                        addDatatoList(newName, newPrice, newPiece);
                         name.setText("");
                         price.setText("");
                         piece.setText("");
@@ -88,47 +89,31 @@ public class NewListItem extends AppCompatActivity {
                 }
             }
         });
-
-        barCodeView();
-        nameView();
-        priceView();
+        dataView();
     }
 
-    public void addDatatoList1(String name, String price, String piece) {
-        boolean insertData = list1DBHelper.addData(name, price, piece);
-        if(insertData) {
-            toastMessage("Hozzáadás megtörtént!");
+    public void dataView() {
+        Cursor data = mainDBHelper.viewData();
+        mDataBaseProductList = new ArrayList<>();
+        while(data.moveToNext()) {
+            mDataBaseProductList.add(new DataBaseProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+        }
+        adapter = new DataBaseListAdapter(getApplicationContext(), mDataBaseProductList);
+        listView.setAdapter(adapter);
+    }
+
+    public void addDatatoList(String name, String price, String piece) {
+        String num = listNumber.getText().toString();
+        if(num.equals("1")) {
+            boolean insertData = list1DBHelper.addData(name, price, piece);
+            if (insertData) {
+                toastMessage("Hozzáadás megtörtént!");
+            } else {
+                toastMessage("Valamit elrontottál!");
+            }
         } else {
-            toastMessage("Valamit elrontottál!");
+            toastMessage("Hibás lista kód!");
         }
-    }
-
-    private void barCodeView() {
-        Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(1));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        barCodeList.setAdapter(adapter);
-    }
-    private void nameView() {
-        Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(2));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        nameList.setAdapter(adapter);
-    }
-    private void priceView() {
-        Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(3));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        priceList.setAdapter(adapter);
     }
 
     private void toastMessage(String message) {

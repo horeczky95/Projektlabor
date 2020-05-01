@@ -1,16 +1,14 @@
 package com.example.shoppinglistapp;
 
-public class Product {
+public class ListProduct {
     private int ID;
-    private String barCode;
-    private String name;
-    private String price;
+    private String name, price, piece;
 
-    public Product(int ID, String barCode, String name, String price) {
+    public ListProduct(int ID, String name, String price, String piece) {
         this.ID = ID;
-        this.barCode = barCode;
         this.name = name;
         this.price = price;
+        this.piece = piece;
     }
 
     public int getID() {
@@ -19,14 +17,6 @@ public class Product {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public String getBarCode() {
-        return barCode;
-    }
-
-    public void setBarCode(String barCode) {
-        this.barCode = barCode;
     }
 
     public String getName() {
@@ -43,5 +33,13 @@ public class Product {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getPiece() {
+        return piece;
+    }
+
+    public void setPiece(String piece) {
+        this.piece = piece;
     }
 }

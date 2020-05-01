@@ -6,6 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".lists.ListItemDelete">
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="409dp"
+        android:layout_height="470dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="409dp"
+            android:layout_height="470dp"></ListView>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
@@ -17,66 +35,6 @@
         app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="408dp"
-        android:layout_height="460dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="210dp"
-        android:layout_marginEnd="1dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ListView
-            android:id="@+id/pieceList"
-            android:layout_width="98dp"
-            android:layout_height="460dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.539"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898" />
-
-        <ListView
-            android:id="@+id/nameList"
-            android:layout_width="146dp"
-            android:layout_height="460dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="204dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.539"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898" />
-
-        <ListView
-            android:id="@+id/priceList"
-            android:layout_width="98dp"
-            android:layout_height="460dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="105dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.945"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898" />
-
-        <ListView
-            android:id="@+id/idList"
-            android:layout_width="50dp"
-            android:layout_height="460dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="7dp" />
-    </RelativeLayout>
 
     <EditText
         android:id="@+id/id"
@@ -96,12 +54,12 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="3dp"
         android:onClick="onClick"
         android:text="@string/backButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/textView14"
@@ -134,7 +92,7 @@
         android:id="@+id/listViewer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="105dp"
         android:text="@string/listView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

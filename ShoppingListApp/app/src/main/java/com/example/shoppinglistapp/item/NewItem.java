@@ -10,16 +10,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.shoppinglistapp.MainActivity;
-import com.example.shoppinglistapp.Product;
-import com.example.shoppinglistapp.ProductListAdapter;
+import com.example.shoppinglistapp.DataBaseProduct;
+import com.example.shoppinglistapp.DataBaseListAdapter;
 import com.example.shoppinglistapp.lists.ListItemDelete;
 import com.example.shoppinglistapp.lists.ListItemMod;
 import com.example.shoppinglistapp.R;
@@ -41,8 +39,8 @@ public class NewItem extends AppCompatActivity {
     MainDBHelper mainDBHelper;
 
     private ListView listView;
-    private ProductListAdapter adapter;
-    private List<Product> mProductList;
+    private DataBaseListAdapter adapter;
+    private List<DataBaseProduct> mDataBaseProductList;
 
     private EditText barCode;
     private EditText name;
@@ -87,11 +85,11 @@ public class NewItem extends AppCompatActivity {
 
     public void dataView() {
         Cursor data = mainDBHelper.viewData();
-        mProductList = new ArrayList<>();
+        mDataBaseProductList = new ArrayList<>();
         while(data.moveToNext()) {
-            mProductList.add(new Product(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            mDataBaseProductList.add(new DataBaseProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
         }
-        adapter = new ProductListAdapter(getApplicationContext(), mProductList);
+        adapter = new DataBaseListAdapter(getApplicationContext(), mDataBaseProductList);
         listView.setAdapter(adapter);
     }
 

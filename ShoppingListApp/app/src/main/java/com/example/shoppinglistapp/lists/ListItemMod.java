@@ -10,15 +10,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.shoppinglistapp.ListProduct;
+import com.example.shoppinglistapp.ListsAdapter;
 import com.example.shoppinglistapp.MainActivity;
-import com.example.shoppinglistapp.database.List1DBHelper;
 import com.example.shoppinglistapp.database.List1DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
@@ -26,17 +25,17 @@ import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.item.NewItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListItemMod extends AppCompatActivity {
 
     private static final String TAG = "ListItemMod";
 
-    List1DatabaseHelper list1DBHelper;
+    List1DatabaseHelper list1DatabaseHelper;
 
-    private ListView idList;
-    private ListView nameList;
-    private ListView priceList;
-    private ListView pieceList;
+    private ListView listView;
+    private ListsAdapter adapter;
+    private List<ListProduct> mItemProductList;
 
     private EditText id;
     private EditText name;
@@ -55,10 +54,7 @@ public class ListItemMod extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_item_mod);
 
-        idList = (ListView) findViewById(R.id.idList);
-        nameList = (ListView) findViewById(R.id.nameList);
-        priceList = (ListView) findViewById(R.id.priceList);
-        pieceList = (ListView) findViewById(R.id.pieceList);
+        listView = (ListView) findViewById(R.id.listView);
 
         id = (EditText) findViewById(R.id.id);
         name = (EditText) findViewById(R.id.name);
@@ -72,15 +68,12 @@ public class ListItemMod extends AppCompatActivity {
         pieceModButton = (Button) findViewById(R.id.pieceModButton);
         listViewer = (Button) findViewById(R.id.listViewer);
 
-        list1DBHelper = new List1DatabaseHelper(this);
+        list1DatabaseHelper = new List1DatabaseHelper(this);
 
         listViewer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                idView();
-                nameView();
-                priceView();
-                pieceView();
+                dataView();
             }
         });
 
@@ -95,25 +88,22 @@ public class ListItemMod extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     String num = listNumber.getText().toString();
-                        if (id.length() != 0 && name.length() != 0 && price.length() != 0 && piece.length() != 0) {
-                            if (num.equals("1")) {
-                                boolean isUpdate = list1DBHelper.updateItem(id.getText().toString(), name.getText().toString(),
+                    if (id.length() != 0 && name.length() != 0 && price.length() != 0 && piece.length() != 0) {
+                        if (num.equals("1")) {
+                            boolean isUpdate = list1DatabaseHelper.updateItem(id.getText().toString(), name.getText().toString(),
                                     price.getText().toString(), piece.getText().toString());
-                                if (isUpdate == true) {
-                                    toastMessage("Termék módosítva!");
-                                } else {
-                                    toastMessage("Sikertelen módosítás!");
-                                }
+                            if (isUpdate == true) {
+                                toastMessage("Termék módosítva!");
+                            } else {
+                                toastMessage("Sikertelen módosítás!");
+                            }
                         } else {
                             toastMessage("Hiányzó adat!");
                         }
-                        idView();
-                        nameView();
-                        priceView();
-                        pieceView();
                     } else {
                         toastMessage("Hiba!");
                     }
+                    dataView();
                 }
             });
     }
@@ -124,20 +114,19 @@ public class ListItemMod extends AppCompatActivity {
                 String num = listNumber.getText().toString();
                 if (id.length() != 0 && name.length() != 0) {
                     if(num.equals("1")) {
-                        boolean isUpdate = list1DBHelper.updateName(id.getText().toString(), name.getText().toString());
+                        boolean isUpdate = list1DatabaseHelper.updateName(id.getText().toString(), name.getText().toString());
                         if (isUpdate == true) {
                             toastMessage("Név módosítva!");
                         } else {
-                            toastMessage("Sikertelen módosítás");
+                            toastMessage("Sikertelen módosítás!");
                         }
+                    } else {
+                        toastMessage("Hiányzó adat!");
                     }
-                    idView();
-                    nameView();
-                    priceView();
-                    pieceView();
                 } else {
-                    toastMessage("Hiányzó adat!");
+                    toastMessage("Hiba!");
                 }
+                dataView();
             }
         });
     }
@@ -148,20 +137,19 @@ public class ListItemMod extends AppCompatActivity {
                 String num = listNumber.getText().toString();
                 if (id.length() != 0 && price.length() != 0) {
                     if(num.equals("1")) {
-                        boolean isUpdate = list1DBHelper.updatePrice(id.getText().toString(), price.getText().toString());
+                        boolean isUpdate = list1DatabaseHelper.updatePrice(id.getText().toString(), price.getText().toString());
                         if (isUpdate == true) {
                             toastMessage("Ár módosítva!");
                         } else {
-                            toastMessage("Sikertelen módosítás");
+                            toastMessage("Sikertelen módosítás!");
                         }
+                    } else {
+                        toastMessage("Hiányzó adat!");
                     }
-                    idView();
-                    nameView();
-                    priceView();
-                    pieceView();
                 } else {
-                    toastMessage("Hiányzó adat!");
+                    toastMessage("Hiba!");
                 }
+                dataView();
             }
         });
     }
@@ -172,61 +160,39 @@ public class ListItemMod extends AppCompatActivity {
                 String num = listNumber.getText().toString();
                 if (id.length() != 0 && piece.length() != 0) {
                     if(num.equals("1")) {
-                        boolean isUpdate = list1DBHelper.updatePiece(id.getText().toString(), piece.getText().toString());
+                        boolean isUpdate = list1DatabaseHelper.updatePiece(id.getText().toString(), piece.getText().toString());
                         if (isUpdate == true) {
                             toastMessage("Darab szám módosítva!");
                         } else {
-                            toastMessage("Sikertelen módosítás");
+                            toastMessage("Sikertelen módosítás!");
                         }
+                    } else {
+                        toastMessage("Hiányzó adat!");
                     }
-                    idView();
-                    nameView();
-                    priceView();
-                    pieceView();
                 } else {
-                    toastMessage("Hiányzó adat!");
+                    toastMessage("Hiba!");
                 }
+                dataView();
             }
         });
     }
 
+    public void dataView() {
+        String num = listNumber.getText().toString();
+        if(num.equals("1")){
+            Cursor data = list1DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else {
+            toastMessage("Hibás lista kód!");
+        }
 
-    private void idView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(0));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        idList.setAdapter(adapter);
     }
-    private void nameView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(1));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        nameList.setAdapter(adapter);
-    }
-    private void priceView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(2));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        priceList.setAdapter(adapter);
-    }
-    private void pieceView() {
-        Cursor data = list1DBHelper.getAllData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(3));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        pieceList.setAdapter(adapter);
-    }
+
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
