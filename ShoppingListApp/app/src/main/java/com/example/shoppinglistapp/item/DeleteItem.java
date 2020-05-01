@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.shoppinglistapp.MainActivity;
+import com.example.shoppinglistapp.Product;
+import com.example.shoppinglistapp.ProductListAdapter;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.database.MainDBHelper;
 import com.example.shoppinglistapp.lists.ListItemDelete;
@@ -30,15 +32,17 @@ import com.example.shoppinglistapp.lists.List4;
 import com.example.shoppinglistapp.lists.List5;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteItem extends AppCompatActivity {
 
     private static final String TAG = "DeleteItem";
 
     MainDBHelper mainDBHelper;
-    private ListView barCodeList;
-    private ListView nameList;
-    private ListView priceList;
+
+    private ListView listView;
+    private ProductListAdapter adapter;
+    private List<Product> mProductList;
 
     private EditText barCode;
     private Button deleteButton;
@@ -47,9 +51,9 @@ public class DeleteItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_item);
-        barCodeList = (ListView) findViewById(R.id.barCodeList);
-        nameList = (ListView) findViewById(R.id.nameList);
-        priceList = (ListView) findViewById(R.id.priceList);
+
+        listView = (ListView) findViewById(R.id.listView);
+
         barCode = (EditText) findViewById(R.id.barCode);
         deleteButton = (Button) findViewById(R.id.deleteItemB);
         mainDBHelper = new MainDBHelper(this);
@@ -65,43 +69,20 @@ public class DeleteItem extends AppCompatActivity {
                 } else {
                     toastMessage("Nincs megadva vonalkód!");
                 }
-                barCodeView();
-                nameView();
-                priceView();
+                dataView();
             }
         });
-
-        barCodeView();
-        nameView();
-        priceView();
+        dataView();
     }
 
-    private void barCodeView() {
+    public void dataView() {
         Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
+        mProductList = new ArrayList<>();
         while(data.moveToNext()) {
-            listData.add(data.getString(1));
+            mProductList.add(new Product(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
         }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        barCodeList.setAdapter(adapter);
-    }
-    private void nameView() {
-        Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(2));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        nameList.setAdapter(adapter);
-    }
-    private void priceView() {
-        Cursor data = mainDBHelper.viewData();
-        ArrayList<String> listData = new ArrayList<>();
-        while(data.moveToNext()) {
-            listData.add(data.getString(3));
-        }
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        priceList.setAdapter(adapter);
+        adapter = new ProductListAdapter(getApplicationContext(), mProductList);
+        listView.setAdapter(adapter);
     }
 
     private void toastMessage(String message) {

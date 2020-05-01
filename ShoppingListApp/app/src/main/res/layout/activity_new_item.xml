@@ -6,23 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".item.NewItem">
 
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/addDB"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="680dp"
         android:onClick="onClick"
         android:text="@string/backButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.452"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addButton"
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="158dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="50dp"
         android:text="@string/add2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +47,7 @@
         android:id="@+id/barCode"
         android:layout_width="381dp"
         android:layout_height="41dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="59dp"
         android:ems="10"
         android:hint="@string/barcode"
         android:inputType="textPersonName"
@@ -47,7 +60,7 @@
         android:id="@+id/name"
         android:layout_width="381dp"
         android:layout_height="41dp"
-        android:layout_marginTop="61dp"
+        android:layout_marginTop="105dp"
         android:ems="10"
         android:hint="@string/itemName"
         android:inputType="textPersonName"
@@ -60,7 +73,7 @@
         android:id="@+id/price"
         android:layout_width="381dp"
         android:layout_height="41dp"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:hint="@string/price"
         android:inputType="textPersonName"
@@ -69,63 +82,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="408dp"
-        android:layout_height="450dp"
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="400dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="235dp"
+        android:layout_marginTop="280dp"
         android:layout_marginEnd="1dp"
-        android:visibility="visible"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ListView
-            android:id="@+id/barCodeList"
-            android:layout_width="130dp"
-            android:layout_height="465dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="9dp"
-            android:layout_marginEnd="269dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.128"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.897" />
-
-        <ListView
-            android:id="@+id/nameList"
-            android:layout_width="130dp"
-            android:layout_height="465dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="139dp"
-            android:layout_marginEnd="139dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.539"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898" />
-
-        <ListView
-            android:id="@+id/priceList"
-            android:layout_width="130dp"
-            android:layout_height="465dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="269dp"
-            android:layout_marginEnd="9dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.945"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898" />
-    </RelativeLayout>
+            android:id="@+id/listView"
+            android:layout_width="409dp"
+            android:layout_height="400dp"
+        ></ListView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

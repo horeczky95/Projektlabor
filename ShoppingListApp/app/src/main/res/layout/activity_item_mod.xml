@@ -6,76 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".item.ItemMod">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="@string/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4" />
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout4"
-        android:layout_width="408dp"
-        android:layout_height="450dp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="409dp"
+        android:layout_height="400dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="280dp"
         android:layout_marginEnd="1dp"
-        android:visibility="visible"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ListView
-            android:id="@+id/barCodeList"
-            android:layout_width="130dp"
-            android:layout_height="450dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.128"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.897" />
+            android:id="@+id/listView"
+            android:layout_width="409dp"
+            android:layout_height="400dp"></ListView>
+    </LinearLayout>
 
-        <ListView
-            android:id="@+id/nameList"
-            android:layout_width="130dp"
-            android:layout_height="450dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="139dp"
-            android:layout_marginEnd="139dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.539"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898" />
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/itemMod"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
-            android:id="@+id/priceList"
-            android:layout_width="130dp"
-            android:layout_height="450dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.945"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.898" />
-    </RelativeLayout>
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:onClick="onClick"
+        android:text="@string/backButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <EditText
         android:id="@+id/barCode"
         android:layout_width="381dp"
         android:layout_height="41dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:hint="@string/barcode"
         android:inputType="textPersonName"
@@ -113,7 +89,7 @@
         android:id="@+id/modButton"
         android:layout_width="110dp"
         android:layout_height="52dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="220dp"
         android:text="@string/itemMod"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
@@ -124,7 +100,7 @@
         android:id="@+id/nameModButton"
         android:layout_width="110dp"
         android:layout_height="52dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="220dp"
         android:text="@string/nameMod"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -135,7 +111,7 @@
         android:id="@+id/priceModButton"
         android:layout_width="110dp"
         android:layout_height="52dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="220dp"
         android:text="@string/priceMod"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
