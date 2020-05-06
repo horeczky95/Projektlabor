@@ -19,6 +19,10 @@ import com.example.shoppinglistapp.ListProduct;
 import com.example.shoppinglistapp.ListsAdapter;
 import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.database.List1DatabaseHelper;
+import com.example.shoppinglistapp.database.List2DatabaseHelper;
+import com.example.shoppinglistapp.database.List3DatabaseHelper;
+import com.example.shoppinglistapp.database.List4DatabaseHelper;
+import com.example.shoppinglistapp.database.List5DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.R;
@@ -32,6 +36,10 @@ public class ListItemMod extends AppCompatActivity {
     private static final String TAG = "ListItemMod";
 
     List1DatabaseHelper list1DatabaseHelper;
+    List2DatabaseHelper list2DatabaseHelper;
+    List3DatabaseHelper list3DatabaseHelper;
+    List4DatabaseHelper list4DatabaseHelper;
+    List5DatabaseHelper list5DatabaseHelper;
 
     private ListView listView;
     private ListsAdapter adapter;
@@ -69,6 +77,10 @@ public class ListItemMod extends AppCompatActivity {
         listViewer = (Button) findViewById(R.id.listViewer);
 
         list1DatabaseHelper = new List1DatabaseHelper(this);
+        list2DatabaseHelper = new List2DatabaseHelper(this);
+        list3DatabaseHelper = new List3DatabaseHelper(this);
+        list4DatabaseHelper = new List4DatabaseHelper(this);
+        list5DatabaseHelper = new List5DatabaseHelper(this);
 
         listViewer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,11 +109,43 @@ public class ListItemMod extends AppCompatActivity {
                             } else {
                                 toastMessage("Sikertelen módosítás!");
                             }
+                        } else if (num.equals("2")) {
+                            boolean isUpdate = list2DatabaseHelper.updateItem(id.getText().toString(), name.getText().toString(),
+                                    price.getText().toString(), piece.getText().toString());
+                            if (isUpdate == true) {
+                                toastMessage("Termék módosítva!");
+                            } else {
+                                toastMessage("Sikertelen módosítás!");
+                            }
+                        } else if (num.equals("3")) {
+                            boolean isUpdate = list3DatabaseHelper.updateItem(id.getText().toString(), name.getText().toString(),
+                                    price.getText().toString(), piece.getText().toString());
+                            if (isUpdate == true) {
+                                toastMessage("Termék módosítva!");
+                            } else {
+                                toastMessage("Sikertelen módosítás!");
+                            }
+                        } else if (num.equals("4")) {
+                            boolean isUpdate = list4DatabaseHelper.updateItem(id.getText().toString(), name.getText().toString(),
+                                    price.getText().toString(), piece.getText().toString());
+                            if (isUpdate == true) {
+                                toastMessage("Termék módosítva!");
+                            } else {
+                                toastMessage("Sikertelen módosítás!");
+                            }
+                        } else if (num.equals("5")) {
+                            boolean isUpdate = list5DatabaseHelper.updateItem(id.getText().toString(), name.getText().toString(),
+                                    price.getText().toString(), piece.getText().toString());
+                            if (isUpdate == true) {
+                                toastMessage("Termék módosítva!");
+                            } else {
+                                toastMessage("Sikertelen módosítás!");
+                            }
                         } else {
-                            toastMessage("Hiányzó adat!");
+                            toastMessage("Hibás lista kód!");
                         }
                     } else {
-                        toastMessage("Hiba!");
+                        toastMessage("Hiányzó adat");
                     }
                     dataView();
                 }
@@ -120,11 +164,39 @@ public class ListItemMod extends AppCompatActivity {
                         } else {
                             toastMessage("Sikertelen módosítás!");
                         }
+                    } else if(num.equals("2")) {
+                        boolean isUpdate = list2DatabaseHelper.updateName(id.getText().toString(), name.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Név módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("3")) {
+                        boolean isUpdate = list3DatabaseHelper.updateName(id.getText().toString(), name.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Név módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("4")) {
+                        boolean isUpdate = list4DatabaseHelper.updateName(id.getText().toString(), name.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Név módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("5")) {
+                        boolean isUpdate = list5DatabaseHelper.updateName(id.getText().toString(), name.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Név módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
                     } else {
-                        toastMessage("Hiányzó adat!");
+                        toastMessage("Hibás lista kód!");
                     }
                 } else {
-                    toastMessage("Hiba!");
+                    toastMessage("Hiányzó adat!");
                 }
                 dataView();
             }
@@ -143,11 +215,39 @@ public class ListItemMod extends AppCompatActivity {
                         } else {
                             toastMessage("Sikertelen módosítás!");
                         }
+                    } else if(num.equals("2")) {
+                        boolean isUpdate = list2DatabaseHelper.updatePrice(id.getText().toString(), price.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Ár módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("3")) {
+                        boolean isUpdate = list3DatabaseHelper.updatePrice(id.getText().toString(), price.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Ár módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("4")) {
+                        boolean isUpdate = list4DatabaseHelper.updatePrice(id.getText().toString(), price.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Ár módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("5")) {
+                        boolean isUpdate = list5DatabaseHelper.updatePrice(id.getText().toString(), price.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Ár módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
                     } else {
-                        toastMessage("Hiányzó adat!");
+                        toastMessage("Hibás lista kód!");
                     }
                 } else {
-                    toastMessage("Hiba!");
+                    toastMessage("Hiányzó adat!");
                 }
                 dataView();
             }
@@ -166,11 +266,39 @@ public class ListItemMod extends AppCompatActivity {
                         } else {
                             toastMessage("Sikertelen módosítás!");
                         }
+                    } else if(num.equals("2")) {
+                        boolean isUpdate = list2DatabaseHelper.updatePiece(id.getText().toString(), piece.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Darab szám módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("3")) {
+                        boolean isUpdate = list3DatabaseHelper.updatePiece(id.getText().toString(), piece.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Darab szám módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("4")) {
+                        boolean isUpdate = list4DatabaseHelper.updatePiece(id.getText().toString(), piece.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Darab szám módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
+                    } else if(num.equals("5")) {
+                        boolean isUpdate = list5DatabaseHelper.updatePiece(id.getText().toString(), piece.getText().toString());
+                        if (isUpdate == true) {
+                            toastMessage("Darab szám módosítva!");
+                        } else {
+                            toastMessage("Sikertelen módosítás!");
+                        }
                     } else {
-                        toastMessage("Hiányzó adat!");
+                        toastMessage("Hibás lista szám!");
                     }
                 } else {
-                    toastMessage("Hiba!");
+                    toastMessage("Hiányzó adat!");
                 }
                 dataView();
             }
@@ -187,12 +315,43 @@ public class ListItemMod extends AppCompatActivity {
             }
             adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
             listView.setAdapter(adapter);
+        } else if(num.equals("2")){
+            Cursor data = list2DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else if(num.equals("3")){
+            Cursor data = list3DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else if(num.equals("4")){
+            Cursor data = list4DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else if(num.equals("5")){
+            Cursor data = list5DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
         } else {
             toastMessage("Hibás lista kód!");
         }
 
     }
-
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

@@ -19,6 +19,10 @@ import com.example.shoppinglistapp.DataBaseListAdapter;
 import com.example.shoppinglistapp.DataBaseProduct;
 import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.database.List1DatabaseHelper;
+import com.example.shoppinglistapp.database.List2DatabaseHelper;
+import com.example.shoppinglistapp.database.List3DatabaseHelper;
+import com.example.shoppinglistapp.database.List4DatabaseHelper;
+import com.example.shoppinglistapp.database.List5DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.item.NewItem;
@@ -33,7 +37,11 @@ public class NewListItem extends AppCompatActivity {
     private static final String TAG = "NewListItem";
 
     MainDBHelper mainDBHelper;
-    List1DatabaseHelper list1DBHelper;
+    List1DatabaseHelper list1DatabaseHelper;
+    List2DatabaseHelper list2DatabaseHelper;
+    List3DatabaseHelper list3DatabaseHelper;
+    List4DatabaseHelper list4DatabaseHelper;
+    List5DatabaseHelper list5DatabaseHelper;
 
     private ListView listView;
     private DataBaseListAdapter adapter;
@@ -61,7 +69,11 @@ public class NewListItem extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         mainDBHelper = new MainDBHelper(this);
-        list1DBHelper = new List1DatabaseHelper(this);
+        list1DatabaseHelper = new List1DatabaseHelper(this);
+        list2DatabaseHelper = new List2DatabaseHelper(this);
+        list3DatabaseHelper = new List3DatabaseHelper(this);
+        list4DatabaseHelper = new List4DatabaseHelper(this);
+        list5DatabaseHelper = new List5DatabaseHelper(this);
 
         addList.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,19 +82,16 @@ public class NewListItem extends AppCompatActivity {
                 String newPrice = price.getText().toString();
                 String newPiece = piece.getText().toString();
                 String num = listNumber.getText().toString();
-                if(num.equals("1")) {
-                    if (name.length() != 0 &&
-                            price.length() != 0 && piece.length() != 0) {
+                if(name.length() != 0 && piece.length() != 0) {
+                    if(newPrice.equals("")) {
+                        newPrice = "0";
                         addDatatoList(newName, newPrice, newPiece);
-                        name.setText("");
-                        price.setText("");
-                        piece.setText("");
-                        toastMessage("A termék be került a listába.");
                     } else {
-                        toastMessage("Hiányzik egy adat!");
+                        newPrice = price.getText().toString();
+                        addDatatoList(newName, newPrice, newPiece);
                     }
                 } else {
-                    toastMessage("Hiba");
+                    toastMessage("Hiányzó adat");
                 }
             }
         });
@@ -102,11 +111,39 @@ public class NewListItem extends AppCompatActivity {
     public void addDatatoList(String name, String price, String piece) {
         String num = listNumber.getText().toString();
         if(num.equals("1")) {
-            boolean insertData = list1DBHelper.addData(name, price, piece);
+            boolean insertData = list1DatabaseHelper.addData(name, price, piece);
             if (insertData) {
                 toastMessage("Hozzáadás megtörtént!");
             } else {
-                toastMessage("Valamit elrontottál!");
+                toastMessage("Hiba!");
+            }
+        } else if(num.equals("2")) {
+            boolean insertData = list2DatabaseHelper.addData(name, price, piece);
+            if (insertData) {
+                toastMessage("Hozzáadás megtörtént!");
+            } else {
+                toastMessage("Hiba!");
+            }
+        } else if(num.equals("3")) {
+            boolean insertData = list3DatabaseHelper.addData(name, price, piece);
+            if (insertData) {
+                toastMessage("Hozzáadás megtörtént!");
+            } else {
+                toastMessage("Hiba!");
+            }
+        } else if(num.equals("4")) {
+            boolean insertData = list4DatabaseHelper.addData(name, price, piece);
+            if (insertData) {
+                toastMessage("Hozzáadás megtörtént!");
+            } else {
+                toastMessage("Hiba!");
+            }
+        } else if(num.equals("5")) {
+            boolean insertData = list5DatabaseHelper.addData(name, price, piece);
+            if (insertData) {
+                toastMessage("Hozzáadás megtörtént!");
+            } else {
+                toastMessage("Hiba!");
             }
         } else {
             toastMessage("Hibás lista kód!");

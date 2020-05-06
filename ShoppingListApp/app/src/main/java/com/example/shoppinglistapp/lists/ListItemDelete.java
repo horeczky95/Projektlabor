@@ -20,6 +20,10 @@ import com.example.shoppinglistapp.ListsAdapter;
 import com.example.shoppinglistapp.MainActivity;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.database.List1DatabaseHelper;
+import com.example.shoppinglistapp.database.List2DatabaseHelper;
+import com.example.shoppinglistapp.database.List3DatabaseHelper;
+import com.example.shoppinglistapp.database.List4DatabaseHelper;
+import com.example.shoppinglistapp.database.List5DatabaseHelper;
 import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.item.NewItem;
@@ -32,6 +36,10 @@ public class ListItemDelete extends AppCompatActivity {
     private static final String TAG = "ListItemDelete";
 
     List1DatabaseHelper list1DatabaseHelper;
+    List2DatabaseHelper list2DatabaseHelper;
+    List3DatabaseHelper list3DatabaseHelper;
+    List4DatabaseHelper list4DatabaseHelper;
+    List5DatabaseHelper list5DatabaseHelper;
 
     private ListView listView;
     private ListsAdapter adapter;
@@ -57,6 +65,10 @@ public class ListItemDelete extends AppCompatActivity {
         delItemButton = (Button) findViewById(R.id.delItemButton);
 
         list1DatabaseHelper = new List1DatabaseHelper(this);
+        list2DatabaseHelper = new List2DatabaseHelper(this);
+        list3DatabaseHelper = new List3DatabaseHelper(this);
+        list4DatabaseHelper = new List4DatabaseHelper(this);
+        list5DatabaseHelper = new List5DatabaseHelper(this);
 
         listViewer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,17 +82,32 @@ public class ListItemDelete extends AppCompatActivity {
             public void onClick(View v) {
                 String num = listNumber.getText().toString();
                 String barcode = id.getText().toString();
-                if(num.equals("1")){
-                    if(id.length() != 0) {
+                if(id.length() != 0){
+                    if(num.equals("1")) {
                         list1DatabaseHelper.deleteItem(barcode);
                         id.setText("");
                         toastMessage("Termék törölve a táblából!");
+                    } else if(num.equals("2")) {
+                        list2DatabaseHelper.deleteItem(barcode);
+                        id.setText("");
+                        toastMessage("Termék törölve a táblából!");
+                    } else if(num.equals("3")) {
+                        list3DatabaseHelper.deleteItem(barcode);
+                        id.setText("");
+                        toastMessage("Termék törölve a táblából!");
+                    } else if(num.equals("4")) {
+                        list4DatabaseHelper.deleteItem(barcode);
+                        id.setText("");
+                        toastMessage("Termék törölve a táblából!");
+                    } else if(num.equals("5")) {
+                        list5DatabaseHelper.deleteItem(barcode);
+                        id.setText("");
+                        toastMessage("Termék törölve a táblából!");
                     } else {
-                        toastMessage("Nincs megadva vonalkód!");
+                        toastMessage("Hibás lista szám!");
                     }
-
                 } else {
-                    toastMessage("Hiba!");
+                    toastMessage("Nincs megadva azonosító!");
                 }
                 dataView();
             }
@@ -91,6 +118,38 @@ public class ListItemDelete extends AppCompatActivity {
         String num = listNumber.getText().toString();
         if(num.equals("1")){
             Cursor data = list1DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else if(num.equals("2")){
+            Cursor data = list2DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else if(num.equals("3")){
+            Cursor data = list3DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else if(num.equals("4")){
+            Cursor data = list4DatabaseHelper.getAllData();
+            mItemProductList = new ArrayList<>();
+            while(data.moveToNext()) {
+                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            }
+            adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
+            listView.setAdapter(adapter);
+        } else if(num.equals("5")){
+            Cursor data = list5DatabaseHelper.getAllData();
             mItemProductList = new ArrayList<>();
             while(data.moveToNext()) {
                 mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));

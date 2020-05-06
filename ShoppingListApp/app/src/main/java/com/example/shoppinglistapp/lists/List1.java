@@ -38,7 +38,6 @@ public class List1 extends AppCompatActivity {
 
     private ListView allPriceList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,7 @@ public class List1 extends AppCompatActivity {
         Cursor data = list1DatabaseHelper.getAllPrice();
         ArrayList<String> listData = new ArrayList<>();
         while(data.moveToNext()) {
-            listData.add(data.getString(0));
+            listData.add(data.getString(0) + "Ft");
         }
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         allPriceList.setAdapter(adapter);

@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Data 1"
-        android:textColor="#D50000"
+        android:textColor="#FFFFFF"
         android:textSize="16dp"></TextView>
 
     <TextView
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Data 2"
-        android:textColor="#D50000"
+        android:textColor="#FFFFFF"
         android:textSize="20dp"
         android:textStyle="bold"></TextView>
 
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Data 3"
-        android:textColor="#D50000"
+        android:textColor="#FFFFFF"
         android:textSize="16dp"></TextView>
 
     <TextView
@@ -40,6 +40,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Data 3"
-        android:textColor="#D50000"
+        android:textColor="#FFFFFF"
         android:textSize="16dp"></TextView>
 </LinearLayout>
