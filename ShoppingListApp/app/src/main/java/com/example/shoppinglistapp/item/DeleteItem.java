@@ -28,6 +28,7 @@ import com.example.shoppinglistapp.lists.List2;
 import com.example.shoppinglistapp.lists.List3;
 import com.example.shoppinglistapp.lists.List4;
 import com.example.shoppinglistapp.lists.List5;
+import com.example.shoppinglistapp.responsivity.ResponsiveAlg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +54,7 @@ public class DeleteItem extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         barCode = (EditText) findViewById(R.id.barCode);
+        ResponsiveAlg.responsive(getWindowManager(),barCode,0.1,0);
         deleteButton = (Button) findViewById(R.id.deleteItemB);
         mainDBHelper = new MainDBHelper(this);
 

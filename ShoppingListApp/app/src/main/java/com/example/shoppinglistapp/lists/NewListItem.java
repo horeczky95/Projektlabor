@@ -28,6 +28,7 @@ import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.item.NewItem;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.database.MainDBHelper;
+import com.example.shoppinglistapp.responsivity.ResponsiveAlg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,8 +61,11 @@ public class NewListItem extends AppCompatActivity {
         setContentView(R.layout.activity_new_itemto_list);
 
         name = (EditText) findViewById(R.id.name);
+        ResponsiveAlg.responsive(getWindowManager(),name,0.55,0);
         price = (EditText) findViewById(R.id.price);
+        ResponsiveAlg.responsive(getWindowManager(),price,0.65,0);
         piece = (EditText) findViewById(R.id.piece);
+        ResponsiveAlg.responsive(getWindowManager(),piece,0.65,0);
         listNumber = (EditText) findViewById(R.id.listNum);
 
         addList = (Button) findViewById(R.id.addList);

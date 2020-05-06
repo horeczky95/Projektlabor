@@ -2,9 +2,12 @@ package com.example.shoppinglistapp.lists;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +20,7 @@ import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.item.NewItem;
+import com.example.shoppinglistapp.responsivity.ResponsiveAlg;
 
 import java.util.List;
 
@@ -30,9 +34,10 @@ public class Lists extends AppCompatActivity {
         String items[] = new String[] {"Bevásárló Lista 1", "Bevásárló Lista 2", "Bevásárló Lista 3", "Bevásárló Lista 4", "Bevásárló Lista 5"};
         ListView listView = (ListView) findViewById(R.id.listView);
 
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, items);
         listView.setAdapter(adapter);
-
+        ResponsiveAlg.responsive(getWindowManager(),listView,0.2,0.3);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

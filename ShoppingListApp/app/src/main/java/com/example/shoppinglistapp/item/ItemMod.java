@@ -2,10 +2,13 @@ package com.example.shoppinglistapp.item;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -28,6 +31,7 @@ import com.example.shoppinglistapp.lists.List2;
 import com.example.shoppinglistapp.lists.List3;
 import com.example.shoppinglistapp.lists.List4;
 import com.example.shoppinglistapp.lists.List5;
+import com.example.shoppinglistapp.responsivity.ResponsiveAlg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,13 +59,18 @@ public class ItemMod extends AppCompatActivity {
         setContentView(R.layout.activity_item_mod);
 
         listView = (ListView) findViewById(R.id.listView);
-
         barCode = (EditText) findViewById(R.id.barCode);
+        ResponsiveAlg.responsive(getWindowManager(),barCode,0.1,0);
         name = (EditText) findViewById(R.id.name);
+        ResponsiveAlg.responsive(getWindowManager(),name,0.1,0);
         price = (EditText) findViewById(R.id.price);
+        ResponsiveAlg.responsive(getWindowManager(),price,0.1,0);
         modButton = (Button) findViewById(R.id.modButton);
+        ResponsiveAlg.responsive(getWindowManager(),modButton,0.7,0);
         nameModButton = (Button) findViewById(R.id.nameModButton);
+        ResponsiveAlg.responsive(getWindowManager(),nameModButton,0.7,0);
         priceModButton = (Button) findViewById(R.id.priceModButton);
+        ResponsiveAlg.responsive(getWindowManager(),priceModButton,0.7,0);
         mainDBHelper = new MainDBHelper(this);
 
         updateItem();

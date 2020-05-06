@@ -27,6 +27,7 @@ import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.R;
 import com.example.shoppinglistapp.item.NewItem;
+import com.example.shoppinglistapp.responsivity.ResponsiveAlg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,16 +60,22 @@ public class ListItemMod extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_item_mod);
 
         listView = (ListView) findViewById(R.id.listView);
 
         id = (EditText) findViewById(R.id.id);
+        ResponsiveAlg.responsive(getWindowManager(),id,0.6,0);
         name = (EditText) findViewById(R.id.name);
+        ResponsiveAlg.responsive(getWindowManager(),name,0.6,0);
         price = (EditText) findViewById(R.id.price);
+        ResponsiveAlg.responsive(getWindowManager(),price,0.6,0);
         piece = (EditText) findViewById(R.id.piece);
+        ResponsiveAlg.responsive(getWindowManager(),piece,0.6,0);
         listNumber = (EditText) findViewById(R.id.listNum);
+        ResponsiveAlg.responsive(getWindowManager(),listNumber,0.8,0);
 
         modButton = (Button) findViewById(R.id.modItemButton);
         nameModButton = (Button) findViewById(R.id.nameModButton);
