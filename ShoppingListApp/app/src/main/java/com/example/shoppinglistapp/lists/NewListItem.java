@@ -10,10 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,7 +23,6 @@ import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 import com.example.shoppinglistapp.item.NewItem;
 import com.example.shoppinglistapp.R;
-import com.example.shoppinglistapp.database.List1DBHelper;
 import com.example.shoppinglistapp.database.MainDBHelper;
 
 import java.util.ArrayList;

@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".item.NewItem">
+    tools:context=".item.NewItem"
+    android:background="@drawable/background">
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="@string/addDB"
+        android:textColor="#D50000"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,10 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="680dp"
+        android:background="#7CB59191"
         android:onClick="onClick"
         android:text="@string/backButton"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,11 +40,14 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="196dp"
         android:layout_marginEnd="50dp"
+        android:background="#7CB59191"
         android:text="@string/add2"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,9 +56,12 @@
         android:layout_width="381dp"
         android:layout_height="41dp"
         android:layout_marginTop="59dp"
+        android:background="#7CB59191"
         android:ems="10"
         android:hint="@string/barcode"
         android:inputType="textPersonName"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,9 +72,12 @@
         android:layout_width="381dp"
         android:layout_height="41dp"
         android:layout_marginTop="105dp"
+        android:background="#7CB59191"
         android:ems="10"
         android:hint="@string/itemName"
         android:inputType="textPersonName"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,9 +88,12 @@
         android:layout_width="381dp"
         android:layout_height="41dp"
         android:layout_marginTop="150dp"
+        android:background="#7CB59191"
         android:ems="10"
         android:hint="@string/price"
         android:inputType="textPersonName"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,7 +114,7 @@
             android:id="@+id/listView"
             android:layout_width="409dp"
             android:layout_height="400dp"
-        ></ListView>
+            android:background="#7C4C4040"></ListView>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,10 +15,9 @@ public class List4DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String TABLE_NAME = "Lista4";
     private static final String COL1 = "ID";
-    private static final String COL2 = "Vonalkód";
-    private static final String COL3 = "Név";
-    private static final String COL4 = "Egység_ár";
-    private static final String COL5 = "Darab_szám";
+    private static final String COL2 = "Név";
+    private static final String COL3 = "Egység_ár";
+    private static final String COL4 = "Darab_szám";
 
     public List4DatabaseHelper(Context context) {
         super(context, TABLE_NAME, null, 1);
@@ -27,9 +26,8 @@ public class List4DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTable = "CREATE TABLE " + TABLE_NAME +
-                " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COL2 +
-                " INT NOT NULL, " + COL3 + " VARCHAR(30) NOT NULL, " +
-                COL4 + " INT NOT NULL, " + COL5 + " INT NOT NULL)";
+                " (ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " + COL2 + " VARCHAR(30) NOT NULL, " +
+                COL3 + " INT NOT NULL, " + COL4 + " INT NOT NULL)";
         db.execSQL(createTable);
     }
 
@@ -39,15 +37,14 @@ public class List4DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String barcode, String name, String price, String piece) {
+    public boolean addData(String name, String price, String piece) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2, barcode);
-        contentValues.put(COL3, name);
-        contentValues.put(COL4, price);
-        contentValues.put(COL5, piece);
+        contentValues.put(COL2, name);
+        contentValues.put(COL3, price);
+        contentValues.put(COL4, piece);
 
-        Log.d(TAG, "addData: Adding " + barcode + ", " + name +
+        Log.d(TAG, "addData: Adding " + name +
                 ", " + price + ", " + piece + " to " + TABLE_NAME);
         long result = db.insert(TABLE_NAME, null, contentValues);
 
@@ -66,54 +63,53 @@ public class List4DatabaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllPrice() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor data = db.rawQuery("SELECT SUM(" + COL4 + " * " + COL5 + ") FROM " + TABLE_NAME, null);
+        Cursor data = db.rawQuery("SELECT SUM(" + COL3 + " * " + COL4 + ") FROM " + TABLE_NAME, null);
         return data;
     }
 
-    public boolean updateItem(String barCode, String newName, String newPrice, String newPiece) {
+    public boolean updateItem(String ID, String newName, String newPrice, String newPiece) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COL2, barCode);
-        cv.put(COL3, newName);
-        cv.put(COL4, newPrice);
-        cv.put(COL5, newPiece);
-        db.update(TABLE_NAME, cv, "Vonalkód = ?", new String[] {barCode});
+        cv.put(COL1, ID);
+        cv.put(COL2, newName);
+        cv.put(COL3, newPrice);
+        cv.put(COL4, newPiece);
+        db.update(TABLE_NAME, cv, "ID = ?", new String[] {ID});
         return true;
     }
 
-    public boolean updateName(String barCode, String newName) {
+    public boolean updateName(String ID, String newName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COL2, barCode);
-        cv.put(COL3, newName);
-        db.update(TABLE_NAME, cv, "Vonalkód = ?", new String[] {barCode});
+        cv.put(COL1, ID);
+        cv.put(COL2, newName);
+        db.update(TABLE_NAME, cv, "ID = ?", new String[] {ID});
         return true;
     }
 
-    public boolean updatePrice(String barCode, String newPrice) {
+    public boolean updatePrice(String ID, String newPrice) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COL2, barCode);
-        cv.put(COL4, newPrice);
-        db.update(TABLE_NAME, cv, "Vonalkód = ?", new String[] {barCode});
+        cv.put(COL1, ID);
+        cv.put(COL3, newPrice);
+        db.update(TABLE_NAME, cv, "ID = ?", new String[] {ID});
         return true;
     }
 
-    public boolean updatePiece(String barCode, String newPiece) {
+    public boolean updatePiece(String ID, String newPiece) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COL2, barCode);
-        cv.put(COL5, newPiece);
-        db.update(TABLE_NAME, cv, "Vonalkód = ?", new String[] {barCode});
+        cv.put(COL1, ID);
+        cv.put(COL4, newPiece);
+        db.update(TABLE_NAME, cv, "ID = ?", new String[] {ID});
         return true;
     }
 
-
-    public void deleteItem(String barCode) {
+    public void deleteItem(String ID) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL2 + " = '" + barCode + "'";
+        String query = "DELETE FROM " + TABLE_NAME + " WHERE " + COL1 + " = '" + ID + "'";
         Log.d(TAG, "deleteItem: query: " + query);
-        Log.d(TAG, "deleteItem: Deleting: " + barCode + "from database.");
+        Log.d(TAG, "deleteItem: Deleting: " + ID + "from database.");
         db.execSQL(query);
     }
 

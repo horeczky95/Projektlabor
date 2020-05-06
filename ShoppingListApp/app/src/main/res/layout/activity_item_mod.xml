@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".item.ItemMod">
+    tools:context=".item.ItemMod"
+    android:background="@drawable/background">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -21,18 +22,21 @@
         <ListView
             android:id="@+id/listView"
             android:layout_width="409dp"
-            android:layout_height="400dp"></ListView>
+            android:layout_height="400dp"
+            android:background="#7C4C4040"></ListView>
     </LinearLayout>
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="@string/itemMod"
+        android:textColor="#D50000"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,10 +44,13 @@
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:background="#7CB59191"
         android:onClick="onClick"
         android:text="@string/backButton"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
@@ -52,9 +59,12 @@
         android:layout_width="381dp"
         android:layout_height="41dp"
         android:layout_marginTop="60dp"
+        android:background="#7CB59191"
         android:ems="10"
         android:hint="@string/barcode"
         android:inputType="textPersonName"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -64,9 +74,12 @@
         android:layout_width="381dp"
         android:layout_height="41dp"
         android:layout_marginTop="10dp"
+        android:background="#7CB59191"
         android:ems="10"
         android:hint="@string/itemMod"
         android:inputType="textPersonName"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,9 +90,12 @@
         android:layout_width="381dp"
         android:layout_height="41dp"
         android:layout_marginTop="10dp"
+        android:background="#7CB59191"
         android:ems="10"
         android:hint="@string/price"
         android:inputType="textPersonName"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +106,10 @@
         android:layout_width="110dp"
         android:layout_height="52dp"
         android:layout_marginTop="220dp"
+        android:background="#7CB59191"
         android:text="@string/itemMod"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +120,10 @@
         android:layout_width="110dp"
         android:layout_height="52dp"
         android:layout_marginTop="220dp"
+        android:background="#7CB59191"
         android:text="@string/nameMod"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +134,10 @@
         android:layout_width="110dp"
         android:layout_height="52dp"
         android:layout_marginTop="220dp"
+        android:background="#7CB59191"
         android:text="@string/priceMod"
+        android:textColor="#D50000"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
