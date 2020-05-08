@@ -54,7 +54,7 @@ public class List4 extends AppCompatActivity {
         Cursor data = list4DatabaseHelper.getAllData();
         mItemProductList = new ArrayList<>();
         while(data.moveToNext()) {
-            mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
         }
         adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
         listView.setAdapter(adapter);

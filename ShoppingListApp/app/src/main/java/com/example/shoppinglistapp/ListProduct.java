@@ -1,21 +1,21 @@
 package com.example.shoppinglistapp;
 
 public class ListProduct {
-    private int ID;
+    private String ID;
     private String name, price, piece;
 
-    public ListProduct(int ID, String name, String price, String piece) {
+    public ListProduct(String ID, String name, String price, String piece) {
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.piece = piece;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

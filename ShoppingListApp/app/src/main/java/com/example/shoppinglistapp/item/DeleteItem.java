@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -57,6 +58,22 @@ public class DeleteItem extends AppCompatActivity {
         ResponsiveAlg.responsive(getWindowManager(),barCode,0.1,0);
         deleteButton = (Button) findViewById(R.id.deleteItemB);
         mainDBHelper = new MainDBHelper(this);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                Cursor data = mainDBHelper.viewData();
+                mDataBaseProductList = new ArrayList<>();
+                int itemID = position;
+                while (data.moveToNext()) {
+                    mDataBaseProductList.add(new DataBaseProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+                }
+                if(itemID == position) {
+                    barCode.setText(mDataBaseProductList.get(itemID).getBarCode());
+                }
+            }
+        });
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

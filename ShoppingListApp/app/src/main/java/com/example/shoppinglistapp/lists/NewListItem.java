@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -99,6 +103,23 @@ public class NewListItem extends AppCompatActivity {
                 }
             }
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = parent.getItemAtPosition(position).toString();
+                Cursor data = mainDBHelper.viewData();
+                mDataBaseProductList = new ArrayList<>();
+                int itemID = position;
+                while (data.moveToNext()) {
+                    mDataBaseProductList.add(new DataBaseProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+                }
+                if(itemID == position) {
+                    name.setText(mDataBaseProductList.get(itemID).getName());
+                    price.setText(mDataBaseProductList.get(itemID).getPrice());
+                }
+            }
+        });
+
         dataView();
     }
 

@@ -21,7 +21,7 @@ import com.example.shoppinglistapp.item.DeleteItem;
 import com.example.shoppinglistapp.item.ItemMod;
 
 import com.example.shoppinglistapp.item.NewItem;
-import com.example.shoppinglistapp.R;;
+import com.example.shoppinglistapp.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class List1 extends AppCompatActivity {
         Cursor data = list1DatabaseHelper.getAllData();
         mItemProductList = new ArrayList<>();
         while(data.moveToNext()) {
-            mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+            mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
         }
         adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
         listView.setAdapter(adapter);
@@ -146,6 +146,3 @@ public class List1 extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-
-/**/

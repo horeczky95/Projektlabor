@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -79,6 +80,63 @@ public class ListItemDelete extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long i) {
+                String item = parent.getItemAtPosition(position).toString();
+                int itemID = position;
+                String num = listNumber.getText().toString();
+                if(num.equals("1")) {
+                    Cursor data = list1DatabaseHelper.getAllData();
+                    mItemProductList = new ArrayList<>();
+                    while (data.moveToNext()) {
+                        mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
+                    }
+                    if (itemID == position) {
+                        id.setText(mItemProductList.get(itemID).getID());
+                    }
+                } else if(num.equals("2")) {
+                    Cursor data = list2DatabaseHelper.getAllData();
+                    mItemProductList = new ArrayList<>();
+                    while (data.moveToNext()) {
+                        mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
+                    }
+                    if (itemID == position) {
+                        id.setText(mItemProductList.get(itemID).getID());
+                    }
+                } else if(num.equals("3")) {
+                    Cursor data = list3DatabaseHelper.getAllData();
+                    mItemProductList = new ArrayList<>();
+                    while (data.moveToNext()) {
+                        mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
+                    }
+                    if (itemID == position) {
+                        id.setText(mItemProductList.get(itemID).getID());
+                    }
+                } else if(num.equals("4")) {
+                    Cursor data = list4DatabaseHelper.getAllData();
+                    mItemProductList = new ArrayList<>();
+                    while (data.moveToNext()) {
+                        mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
+                    }
+                    if (itemID == position) {
+                        id.setText(mItemProductList.get(itemID).getID());
+                    }
+                } else if(num.equals("5")) {
+                    Cursor data = list5DatabaseHelper.getAllData();
+                    mItemProductList = new ArrayList<>();
+                    while (data.moveToNext()) {
+                        mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
+                    }
+                    if (itemID == position) {
+                        id.setText(mItemProductList.get(itemID).getID());
+                    }
+                } else {
+                    toastMessage("Hibás lista kód!");
+                }
+            }
+        });
+
         delItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +180,7 @@ public class ListItemDelete extends AppCompatActivity {
             Cursor data = list1DatabaseHelper.getAllData();
             mItemProductList = new ArrayList<>();
             while(data.moveToNext()) {
-                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+                mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
             }
             adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
             listView.setAdapter(adapter);
@@ -130,7 +188,7 @@ public class ListItemDelete extends AppCompatActivity {
             Cursor data = list2DatabaseHelper.getAllData();
             mItemProductList = new ArrayList<>();
             while(data.moveToNext()) {
-                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+                mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
             }
             adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
             listView.setAdapter(adapter);
@@ -138,7 +196,7 @@ public class ListItemDelete extends AppCompatActivity {
             Cursor data = list3DatabaseHelper.getAllData();
             mItemProductList = new ArrayList<>();
             while(data.moveToNext()) {
-                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+                mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
             }
             adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
             listView.setAdapter(adapter);
@@ -146,7 +204,7 @@ public class ListItemDelete extends AppCompatActivity {
             Cursor data = list4DatabaseHelper.getAllData();
             mItemProductList = new ArrayList<>();
             while(data.moveToNext()) {
-                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+                mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
             }
             adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
             listView.setAdapter(adapter);
@@ -154,7 +212,7 @@ public class ListItemDelete extends AppCompatActivity {
             Cursor data = list5DatabaseHelper.getAllData();
             mItemProductList = new ArrayList<>();
             while(data.moveToNext()) {
-                mItemProductList.add(new ListProduct(data.getInt(0),data.getString(1),data.getString(2),data.getString(3)));
+                mItemProductList.add(new ListProduct(data.getString(0),data.getString(1),data.getString(2),data.getString(3)));
             }
             adapter = new ListsAdapter(getApplicationContext(), mItemProductList);
             listView.setAdapter(adapter);
