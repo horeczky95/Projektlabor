@@ -75,14 +75,17 @@ public class List3 extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.newItem:
                 Intent lists = new Intent(List3.this, NewListItem.class);
+                lists.putExtra("number", "3");
                 startActivity(lists);
                 break;
             case R.id.modButton:
                 Intent items = new Intent(List3.this, ListItemMod.class);
+                items.putExtra("number", "3");
                 startActivity(items);
                 break;
             case R.id.delButton:
                 Intent itemDel = new Intent(List3.this, ListItemDelete.class);
+                itemDel.putExtra("number", "3");
                 startActivity(itemDel);
         }
     }

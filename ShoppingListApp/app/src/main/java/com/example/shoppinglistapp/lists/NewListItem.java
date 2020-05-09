@@ -48,6 +48,7 @@ public class NewListItem extends AppCompatActivity {
     List4DatabaseHelper list4DatabaseHelper;
     List5DatabaseHelper list5DatabaseHelper;
 
+
     private ListView listView;
     private DataBaseListAdapter adapter;
     private List<DataBaseProduct> mDataBaseProductList;
@@ -55,7 +56,7 @@ public class NewListItem extends AppCompatActivity {
     private EditText name;
     private EditText price;
     private EditText piece;
-    private EditText listNumber;
+    protected EditText listNumber;
 
     private Button addList;
 
@@ -120,6 +121,11 @@ public class NewListItem extends AppCompatActivity {
             }
         });
 
+        Intent receivedIntent = getIntent();
+        String number;
+        number = receivedIntent.getStringExtra("number");
+        listNumber.setText(number);
+
         dataView();
     }
 
@@ -183,8 +189,33 @@ public class NewListItem extends AppCompatActivity {
         String num = listNumber.getText().toString();
         switch (v.getId()) {
             case R.id.backButton:
-                Intent list1 = new Intent(NewListItem.this, Lists.class);
-                startActivity(list1);
+                switch (num) {
+                    case "1":
+                        Intent list1 = new Intent(NewListItem.this, List1.class);
+                        startActivity(list1);
+                        break;
+                    case "2":
+                        Intent list2 = new Intent(NewListItem.this, List2.class);
+                        startActivity(list2);
+                        break;
+                    case "3":
+                        Intent list3 = new Intent(NewListItem.this, List3.class);
+                        startActivity(list3);
+                        break;
+                    case "4":
+                        Intent list4 = new Intent(NewListItem.this, List4.class);
+                        startActivity(list4);
+                        break;
+                    case "5":
+                        Intent list5 = new Intent(NewListItem.this, List5.class);
+                        startActivity(list5);
+                        break;
+                    default:
+                        toastMessage("Hibás lista kód!");
+                        Intent list = new Intent(NewListItem.this, Lists.class);
+                        startActivity(list);
+                        break;
+                }
                 break;
         }
     }

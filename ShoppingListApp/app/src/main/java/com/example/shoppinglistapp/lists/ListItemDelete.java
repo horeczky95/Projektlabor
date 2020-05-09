@@ -47,7 +47,7 @@ public class ListItemDelete extends AppCompatActivity {
     private ListsAdapter adapter;
     private List<ListProduct> mItemProductList;
 
-    private EditText listNumber;
+    protected EditText listNumber;
     private EditText id;
 
     private Button delItemButton;
@@ -172,6 +172,11 @@ public class ListItemDelete extends AppCompatActivity {
                 dataView();
             }
         });
+
+        Intent receivedIntent = getIntent();
+        String number;
+        number = receivedIntent.getStringExtra("number");
+        listNumber.setText(number);
     }
 
     public void dataView() {
@@ -230,8 +235,33 @@ public class ListItemDelete extends AppCompatActivity {
         String num = listNumber.getText().toString();
         switch (v.getId()) {
             case R.id.backButton:
-                Intent list1 = new Intent(ListItemDelete.this, Lists.class);
-                startActivity(list1);
+                switch (num) {
+                    case "1":
+                        Intent list1 = new Intent(ListItemDelete.this, List1.class);
+                        startActivity(list1);
+                        break;
+                    case "2":
+                        Intent list2 = new Intent(ListItemDelete.this, List2.class);
+                        startActivity(list2);
+                        break;
+                    case "3":
+                        Intent list3 = new Intent(ListItemDelete.this, List3.class);
+                        startActivity(list3);
+                        break;
+                    case "4":
+                        Intent list4 = new Intent(ListItemDelete.this, List4.class);
+                        startActivity(list4);
+                        break;
+                    case "5":
+                        Intent list5 = new Intent(ListItemDelete.this, List5.class);
+                        startActivity(list5);
+                        break;
+                    default:
+                        toastMessage("Hibás lista kód!");
+                        Intent list = new Intent(ListItemDelete.this, Lists.class);
+                        startActivity(list);
+                        break;
+                }
                 break;
         }
     }

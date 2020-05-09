@@ -74,14 +74,17 @@ public class List4 extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.newItem:
                 Intent lists = new Intent(List4.this, NewListItem.class);
+                lists.putExtra("number", "4");
                 startActivity(lists);
                 break;
             case R.id.modButton:
                 Intent items = new Intent(List4.this, ListItemMod.class);
+                items.putExtra("number", "4");
                 startActivity(items);
                 break;
             case R.id.delButton:
                 Intent itemDel = new Intent(List4.this, ListItemDelete.class);
+                itemDel.putExtra("number", "4");
                 startActivity(itemDel);
         }
     }

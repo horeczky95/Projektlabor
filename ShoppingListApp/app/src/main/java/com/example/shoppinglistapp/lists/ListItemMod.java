@@ -52,7 +52,7 @@ public class ListItemMod extends AppCompatActivity {
     private EditText name;
     private EditText price;
     private EditText piece;
-    private EditText listNumber;
+    protected EditText listNumber;
 
     private Button modButton;
     private Button nameModButton;
@@ -159,6 +159,11 @@ public class ListItemMod extends AppCompatActivity {
         updateName();
         updatePrice();
         updatePiece();
+
+        Intent receivedIntent = getIntent();
+        String number;
+        number = receivedIntent.getStringExtra("number");
+        listNumber.setText(number);
     }
 
     public void updateItem() {
@@ -427,8 +432,33 @@ public class ListItemMod extends AppCompatActivity {
         String num = listNumber.getText().toString();
         switch (v.getId()) {
             case R.id.backButton:
-                    Intent list1 = new Intent(ListItemMod.this, Lists.class);
-                    startActivity(list1);
+                switch (num) {
+                    case "1":
+                        Intent list1 = new Intent(ListItemMod.this, List1.class);
+                        startActivity(list1);
+                        break;
+                    case "2":
+                        Intent list2 = new Intent(ListItemMod.this, List2.class);
+                        startActivity(list2);
+                        break;
+                    case "3":
+                        Intent list3 = new Intent(ListItemMod.this, List3.class);
+                        startActivity(list3);
+                        break;
+                    case "4":
+                        Intent list4 = new Intent(ListItemMod.this, List4.class);
+                        startActivity(list4);
+                        break;
+                    case "5":
+                        Intent list5 = new Intent(ListItemMod.this, List5.class);
+                        startActivity(list5);
+                        break;
+                    default:
+                        toastMessage("Hibás lista kód!");
+                        Intent list = new Intent(ListItemMod.this, Lists.class);
+                        startActivity(list);
+                        break;
+                }
                 break;
         }
     }

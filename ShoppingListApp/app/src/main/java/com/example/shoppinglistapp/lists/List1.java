@@ -32,6 +32,10 @@ public class List1 extends AppCompatActivity {
 
     List1DatabaseHelper list1DatabaseHelper;
 
+    ListItemMod listItemMod;
+    NewListItem newListItem;
+    ListItemDelete listItemDelete;
+
     private ListView listView;
     private ListsAdapter adapter;
     private List<ListProduct> mItemProductList;
@@ -75,15 +79,19 @@ public class List1 extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.newItem:
                 Intent lists = new Intent(List1.this, NewListItem.class);
+                lists.putExtra("number", "1");
                 startActivity(lists);
                 break;
             case R.id.modButton:
                 Intent items = new Intent(List1.this, ListItemMod.class);
+                items.putExtra("number", "1");
                 startActivity(items);
                 break;
             case R.id.delButton:
                 Intent itemDel = new Intent(List1.this, ListItemDelete.class);
+                itemDel.putExtra("number", "1");
                 startActivity(itemDel);
+                break;
         }
     }
 

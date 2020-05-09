@@ -74,14 +74,17 @@ public class List5 extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.newItem:
                 Intent lists = new Intent(List5.this, NewListItem.class);
+                lists.putExtra("number", "5");
                 startActivity(lists);
                 break;
             case R.id.modButton:
                 Intent items = new Intent(List5.this, ListItemMod.class);
+                items.putExtra("number", "5");
                 startActivity(items);
                 break;
             case R.id.delButton:
                 Intent itemDel = new Intent(List5.this, ListItemDelete.class);
+                itemDel.putExtra("number", "5");
                 startActivity(itemDel);
         }
     }

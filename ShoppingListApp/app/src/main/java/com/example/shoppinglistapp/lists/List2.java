@@ -34,6 +34,10 @@ public class List2 extends AppCompatActivity {
     private ListsAdapter adapter;
     private List<ListProduct> mItemProductList;
 
+    ListItemMod listItemMod;
+    NewListItem newListItem;
+    ListItemDelete listItemDelete;
+
     private ListView allPriceList;
 
     @Override
@@ -71,14 +75,17 @@ public class List2 extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.newItem:
                 Intent lists = new Intent(List2.this, NewListItem.class);
+                lists.putExtra("number", "2");
                 startActivity(lists);
                 break;
             case R.id.modButton:
                 Intent items = new Intent(List2.this, ListItemMod.class);
+                items.putExtra("number", "2");
                 startActivity(items);
                 break;
             case R.id.delButton:
                 Intent itemDel = new Intent(List2.this, ListItemDelete.class);
+                itemDel.putExtra("number", "2");
                 startActivity(itemDel);
         }
     }
